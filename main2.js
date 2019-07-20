@@ -55,9 +55,35 @@ class Carousel {
     }
 }
 
-function fade(fromNode,toNode,callback){
-    console.log(fromNode,toNode)
-    callback()
+function fade(fromNode,toNode,callback){    
+    let opacityShow = 1
+    let opacityHide = 0
+    let step = 0.04
+    fromNode.style.zIndex = 10
+    toNode.style.zIndex = 9
+    
+    function fromNodeAnimation () {
+        if(opacityShow > 0){
+            opacityShow -= step
+            fromNode.style.opacity = opacityShow
+            requestAnimationFrame(fromNodeAnimation)
+        } else {
+            opacityShow = 0
+        }
+    }
+    function toNodeAnimation () {
+        if(opacityHide < 1) {
+            opacityHide += step
+            toNode.style.opacity = opacityHide
+            requestAnimationFrame(toNodeAnimation)
+        } else {
+            opacityHide = 1
+            callback()
+        }
+    }
+    
+    fromNodeAnimation()
+    toNodeAnimation()
 }
 
 document.querySelectorAll('.carousel').forEach(carousel => new Carousel(carousel,fade))
