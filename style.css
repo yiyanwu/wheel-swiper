@@ -1,11 +1,11 @@
 .carousel {
-    max-width: 600px;
+    max-width: 480px;
+    margin-top: 30px;
 }
 
 .carousel .panels {
     position: relative;
-    /* max-width: 600px; */
-    height: 450px;
+    height: 320px;
 }
 
 .carousel .panels>a {
