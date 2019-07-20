@@ -1,5 +1,6 @@
 class Carousel {
-    constructor(root) {
+    constructor(root,animation) {
+        this.animation = animation || ((fromNode,toNode,callback) => callback())
         this.root = root
         this.dotsCt = root.querySelector('.dots')
         this.dots = Array.from(root.querySelectorAll('.dots > span'))
@@ -24,30 +25,39 @@ class Carousel {
         this.dotsCt.onclick = (e) => {
             if (e.target.tagName !== 'SPAN') return
             let index = this.dots.indexOf(e.target)
-            this.setPanels(index)
+            this.setPanels(index, this.index)
             this.setDots(index)
         }
 
         this.pre.onclick = (e) => {
-            this.setPanels(this.preIndex)
+            this.setPanels(this.preIndex, this.index)
             this.setDots(this.preIndex)  //Dots会发生变化，所以先设置其他的，最后设置Dots
         }
 
         this.next.onclick = (e) => {
-            this.setPanels(this.nextIndex)
+            this.setPanels(this.nextIndex, this.index)
             this.setDots(this.nextIndex)
         }
     }
 
-    setPanels(index) {
-        this.panels.forEach(a => a.style.zIndex = 1)
-        this.panels[index].style.zIndex = 10
+    /* 操作图片*/
+    setPanels(toIndex, fromIndex) {
+        this.animation(this.panels[fromIndex], this.panels[toIndex], () => {
+            this.panels.forEach(a => a.style.zIndex = 1)
+            this.panels[toIndex].style.zIndex = 10
+        })
     }
 
+    /* 操作下标点*/
     setDots(index) {
         this.dots.forEach(dot => dot.classList.remove('active'))
-        this.dots[index].classList.add('active')
+        this.dots[index].classList.add('active')   
     }
 }
 
-document.querySelectorAll('.carousel').forEach(carousel => new Carousel(carousel))
+function fade(fromNode,toNode,callback){
+    console.log(fromNode,toNode)
+    callback()
+}
+
+document.querySelectorAll('.carousel').forEach(carousel => new Carousel(carousel,fade))
