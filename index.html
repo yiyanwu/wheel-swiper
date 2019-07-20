@@ -8,23 +8,12 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="carousel">
-        <div class="panels">
-            <a href=""><img src="./img/1.jpg"></a>
-            <a href=""><img src="./img/2.jpg"></a>
-            <a href=""><img src="./img/3.jpg"></a>
-            <a href=""><img src="./img/4.jpg"></a>
-        </div>
-        <div class="action">
-            <span class="pre">上一页</span>
-            <span class="next">下一页</span>
-            <div class="dots">
-                <span class="active"></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+    <div class="select"> <span>选择轮播效果</span>
+        <select>
+            <option value="fade">fade</option>
+            <option value="zoom">zoom</option>
+            <option value="zoomOut">zoomOut</option>
+        </select>
     </div>
 
     <div class="carousel">
@@ -45,7 +34,9 @@
             </div>
         </div>
     </div>
-
+    <footer>
+        <p>© 吴一晏</p>
+    </footer>
 
     <script src="./main2.js"></script>
 </body>

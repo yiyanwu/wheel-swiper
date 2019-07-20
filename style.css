@@ -1,11 +1,36 @@
+.select {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.select span {
+    padding: 5px;
+    font-size: 20px;
+    color: #0080ff;
+}
+
+.select select {
+    padding: 5px;
+    border: 1px solid #0080FF;
+    color: #0080ff;
+    outline: none;
+    font-size: 15px;
+}
+
+.select select:checked {
+    border: 1px solid red;
+}
+
 .carousel {
     max-width: 480px;
-    margin-top: 30px;
+    margin: 30px auto;
 }
 
 .carousel .panels {
     position: relative;
     height: 320px;
+    overflow: hidden;
 }
 
 .carousel .panels>a {
@@ -66,4 +91,12 @@
 
 .carousel .action>span.next {
     order: 3;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: #45a1ff;
+    color: #fff;
 }
