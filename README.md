@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>w-swiper</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+# 介绍
+
+1. 基于原生JS做的一个轮播轮子
+2. 支持三种动画效果 
+fade 渐隐效果
+zoom 放大消失
+zoomOut 缩小从随机方向消失
+
+
+## 基本用法
+
+1. HTML
+```
+<link rel="stylesheet" href="./style.css">
 <body>
+    /* 如需要切换动画效果 */
     <div class="select"> <span>选择轮播效果</span>
         <select>
             <option value="fade">fade</option>
@@ -34,10 +40,19 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p>© 吴一晏</p>
-    </footer>
-
     <script src="./main.js"></script>
-</body>
-</html>
+    </body>
+```
+2. JS
+```
+...
+const carousel = new Carousel(document.querySelector('.carousel'),Animation.fade(300)) //默认400
+//其他两种动画方式的调用方法.做了一个400毫秒的函数防抖，超过400连续点击的话，默认参数如下
+//const carousel = new Carousel(document.querySelector('.carousel'),Animation.zoom(5,1000))   
+//const carousel = new Carousel(document.querySelector('.carousel'),Animation.zoomOut(0.01,1000))
+
+/* 如果需要切换动画效果 需配合HTML使用*/
+document.querySelector('select').onchange = function (e) { 
+    carousel.setAnimation(Animation[this.value]())
+}
+```
